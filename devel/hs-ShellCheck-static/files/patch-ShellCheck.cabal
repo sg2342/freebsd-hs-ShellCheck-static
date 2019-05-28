@@ -1,0 +1,10 @@
+--- ShellCheck.cabal.orig	2019-05-14 11:09:53.300482000 +0000
++++ ShellCheck.cabal	2019-05-14 09:58:00.023766000 +0000
+@@ -84,6 +84,7 @@
+       Paths_ShellCheck
+ 
+ executable shellcheck
++    ld-options: -static
+     if impl(ghc < 8.0)
+       build-depends:
+         semigroups
