@@ -11,12 +11,10 @@ package_task:
     - sed -i.bak -e 's,pkg+http://pkg.FreeBSD.org/\${ABI}/quarterly,pkg+http://pkg.FreeBSD.org/\${ABI}/latest,' /etc/pkg/FreeBSD.conf
     - pkg upgrade -y
   pkg_install_script:
-    - pkg install -y lang/ghc devel/hs-cabal-install 
+    - pkg install -y lang/ghc devel/hs-cabal-install textproc/hs-pandoc
   portsnap_script:
     - portsnap  --interactive fetch && portsnap extract
   build_package_script:
-    - env BATCH=1 PACKAGES=`pwd` make -C devel/hs-ShellCheck-static package
-  check_dir_script:
-    - ls -ltRr
+    - env BATCH=1 PACKAGES=`pwd` make -j2 -C devel/hs-ShellCheck-static package
   binaries_artifacts:
-    path: "hs-ShellCheck*"
+    path: "./All/hs-ShellCheck-*.txz"
